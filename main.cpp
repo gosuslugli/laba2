@@ -3,11 +3,15 @@
 #include "Sign.h"
 #include "TextScan.h"
 #include <string>
+#include <Windows.h>
 
 using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     Store store; // объект, где будут храниться данные
 
     // цикл меню
@@ -15,17 +19,17 @@ int main()
     {
         string choice; // переменная выбора пользователя
 
-        cout << "\n~~~МЕНЮ~~~" << endl;
-        cout << "1 - Поиск по знаку\n"
-             << "2 - Извлечь поля объекта\n"
-             << "3 - Получить определенные поля\n"
-             << "4 - Вставить значение\n"
-             << "5 - Изменить значение\n"
-             << "6 - Удалить значение\n"
-             << "7 - Вывести ?, потом ! предложения" << endl;
-        cout << "Выбор: ";
+        wcout << L"\n~~~МЕНЮ~~~" << endl;
+        wcout << L"1 - Поиск по знаку\n"
+             << L"2 - Извлечь поля объекта\n"
+             << L"3 - Получить определенные поля\n"
+             << L"4 - Вставить значение\n"
+             << L"5 - Изменить значение\n"
+             << L"6 - Удалить значение\n"
+             << L"7 - Вывести ?, потом ! предложения" << endl;
+        wcout << L"Выбор: ";
         cin >> choice; // ввод выбора
-        cout << "\n" << endl;
+        wcout << "\n" << endl;
 
         // обработка ввода (исключительные ситуации)
         try
@@ -42,7 +46,7 @@ int main()
         }
         catch(const char*mssg) // обработка ошибки
         {
-            cout << "Ошибка ввода" << endl;
+            wcout << L"Ошибка ввода" << endl;
             exit(0);
         }
 
@@ -54,6 +58,6 @@ int main()
         else if (choice == "5") store.Change();
         else if (choice == "6") store.Delete();
         else if (choice == "7") TextScaner();
-        else {cout << "Ошибка ввода" << endl; exit(0);}
+        else {wcout << L"Ошибка ввода" << endl; exit(0);}
     }
 }

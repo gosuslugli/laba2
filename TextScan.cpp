@@ -8,12 +8,13 @@ using namespace std;
 
 void TextScaner()
 {
+    setlocale(LC_CTYPE, "Russian");
     fstream file; // создаем поток ввода
     file.open("Text.txt"); // открытие файла
 
     if (!file.is_open()) // если файл не открылся
     {
-        cout << "Ошибка открытия файла!" << endl;
+        wcout << L"Ошибка открытия файла!" << endl;
         exit(0);
     }
 

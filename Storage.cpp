@@ -17,7 +17,7 @@ Store::Store()
     this->arrayDay = new int[1];
     this->arrayFinally = new int[1];
 
-    cout << "Вызван конструктор по умолчанию класса Store" << endl;
+    wcout << "Вызван конструктор по умолчанию класса Store" << endl;
 }
 
 // конструктор с параметром
@@ -31,7 +31,7 @@ Store::Store(int size)
     this->arrayDay = new int[1];
     this->arrayFinally = new int[1];
 
-    cout << "Вызван конструктор c параметром класса Store" << endl;
+    wcout << "Вызван конструктор c параметром класса Store" << endl;
 }
 
 // конструктор копирования
@@ -47,7 +47,7 @@ Store::Store(const Store &s)
 
     for (int id = 0; id < this->countElement; id++) this->array[id] = s.array[id]; // копируем элементы
 
-    cout << "Вызван конструктор копирования класса Store" << endl;
+    wcout << "Вызван конструктор копирования класса Store" << endl;
 }
 
 // деструктор
@@ -59,7 +59,7 @@ Store::~Store()
     delete arrayDay;
     delete arrayFinally;
 
-    cout << "Вызван деструктор класса Store" << endl;
+    wcout << L"Вызван деструктор класса Store" << endl;
 }
 
 // сортировка массива
@@ -130,12 +130,12 @@ void Store::FindSign()
     getline(cin, buf);
 
     string findSign; // переменная хранин введеный знак
-    cout << "\nЧтобы узнать информацию о людях, введите знак: ";
+    wcout << L"\nЧтобы узнать информацию о людях, введите знак: ";
     cin >> findSign;
 
     int flagFind = 0; // флаг на найденность таких маршрутов
 
-    cout << "\n~Информация о людях~" << endl;
+    wcout << L"\n~Информация о людях~" << endl;
 
     for (int id = 0; id < countElement; id++) // перебираем все элементы
     {
@@ -147,7 +147,7 @@ void Store::FindSign()
         }
     }
 
-    if (!flagFind) cout << "\nЛюдей с такой фамилией нет!" << endl; // если не нашли
+    if (!flagFind) wcout << L"\nЛюдей с такой фамилией нет!" << endl; // если не нашли
 }
 
 // извлечение значения
@@ -164,7 +164,7 @@ void Store::GetFiel()
     getline(cin, buf);
     string choice;
 
-    cout << "\nВведите номер элемента, поля которого вы хотите вывести: ";
+    wcout << L"\nВведите номер элемента, поля которого вы хотите вывести: ";
     cin >> choice;
 
     // проверка на правильность ввода (работа с исключительной ситуацией)
@@ -177,13 +177,13 @@ void Store::GetFiel()
     }
     catch(const char*mssg)
     {
-        cout << "Неверный ввод!" << endl;
+        wcout << "Неверный ввод!" << endl;
     }
 
     // если выбор элемента превышает значения кол-ва элементов или меньше 0, то ошибка
     if (choice > to_string(countElement) or choice < "0")
     {
-        cout << "Ошибка ввода" << endl;
+        wcout << "Ошибка ввода" << endl;
         exit(0);
     }
 
@@ -211,11 +211,12 @@ void Store::Set()
 // метод изменения значения
 void Store::Change()
 {
+    setlocale(LC_CTYPE, "Russian");
     // очищаем буфер ввода
     string buf;
     getline(cin, buf);
 
-    cout << "\nВыберете номер элемента, данные которого хотите изменить: ";
+    wcout << L"\nВыберете номер элемента, данные которого хотите изменить: ";
     string choice;
      cin >> choice;
 
@@ -227,7 +228,7 @@ void Store::Change()
     }
     catch(const char*mssg)
     {
-        cout << "Ошибка ввода!" << endl;
+        wcout << "Ошибка ввода!" << endl;
         exit(0);
     }
 
@@ -241,7 +242,7 @@ void Store::Delete()
     string buf;
     getline(cin, buf);
 
-    cout << "Выберете номер элемента, данные которого хотите удалить: ";
+    wcout << L"Выберете номер элемента, данные которого хотите удалить: ";
     string choice;
     cin >> choice;
 
@@ -252,7 +253,7 @@ void Store::Delete()
     }
     catch(const char*mssg)
     {
-        cout << "Ошибка ввода!" << endl;
+        wcout << L"Ошибка ввода!" << endl;
         exit(0);
     }
 

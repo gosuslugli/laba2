@@ -11,7 +11,7 @@ Sign::Sign()
     this->sign = "None";
     this->birthday = "None";
 
-    cout << "Вызван конструктор по умолчанию класса Sign" << endl;
+    wcout << "Вызван конструктор по умолчанию класса Sign" << endl;
 }
 
 // конструктор с параметром
@@ -21,7 +21,7 @@ Sign::Sign(string LnameFname, string sign, string birthday)
     this->sign = sign;
     this->birthday = birthday;
 
-    cout << "Вызван конструктор с параметром класса Sign" << endl;
+    wcout << L"Вызван конструктор с параметром класса Sign" << endl;
 }
 
 // конструктор копирования
@@ -31,13 +31,13 @@ Sign::Sign(const Sign &s)
     this->sign = s.sign;
     this->birthday = s.birthday;
 
-    cout << "Вызван конструктор копирования класса Sign" << endl;
+    wcout << L"Вызван конструктор копирования класса Sign" << endl;
 }
 
 // деструктор
 Sign::~Sign()
 {
-    cout << "Вызван деструктор класса Sign" << endl;
+    wcout << L"Вызван деструктор класса Sign" << endl;
 }
 
 // метод извлечения значений
@@ -54,12 +54,12 @@ void Sign::Get()
     getline(cin, buf);
 
     string choice;
-    cout << "\nЧто хотите получить?\n" <<
-                "1 - Фамилия Имя\n" <<
-                "2 - Знак зодиака\n" <<
-                "3 - День рождения\n" <<
-                "4 - Все поля" << endl;
-    cout << "Выбор: ";
+    wcout << L"\nЧто хотите получить?\n" <<
+                L"1 - Фамилия Имя\n" <<
+                L"2 - Знак зодиака\n" <<
+                L"3 - День рождения\n" <<
+                L"4 - Все поля" << endl;
+    wcout << L"Выбор: ";
     cin >> choice;
 
     // обработка исключений
@@ -72,16 +72,16 @@ void Sign::Get()
     }
     catch(const char*mssg)
     {
-        cout << "Неверный ввод" << endl;
+        wcout << L"Неверный ввод" << endl;
     }
 
-    if (choice == "1") cout << "\nФамилия Имя: " << this->LnameFname << endl;
-    else if (choice == "2") cout << "\nЗнак зодиака: " << this->sign << endl;
-    else if (choice == "3") cout << "\nДень рождения: " << this->birthday << endl;
-    else if (choice == "4") cout << "\nФамилия Имя: " << this->LnameFname << " | Знак зодиака: " << this->sign << " | День рождения: " << this->birthday << endl;
+    if (choice == "1") cout << L"\nФамилия Имя: " << this->LnameFname << endl;
+    else if (choice == "2") cout << L"\nЗнак зодиака: " << this->sign << endl;
+    else if (choice == "3") cout << L"\nДень рождения: " << this->birthday << endl;
+    else if (choice == "4") cout << L"\nФамилия Имя: " << this->LnameFname << " | Знак зодиака: " << this->sign << " | День рождения: " << this->birthday << endl;
     else
     {
-        cout << "Ошибка выбора" << endl;
+        wcout << L"Ошибка выбора" << endl;
         exit(0);
     }
 }
@@ -118,11 +118,11 @@ void Sign::Change()
     getline(cin, buf);
 
     string choice;
-    cout << "\nЧто хотите изменить?\n" <<
-            "1 - Фамилия Имя\n" <<
-            "2 - Знак зодиака\n" <<
-            "3 - День рождения\n" << endl;
-    cout << "Выбор: ";
+    wcout << L"\nЧто хотите изменить?\n" <<
+            L"1 - Фамилия Имя\n" <<
+            L"2 - Знак зодиака\n" <<
+            L"3 - День рождения\n" << endl;
+    wcout << "Выбор: ";
     cin >> choice;
 
     try
@@ -134,55 +134,55 @@ void Sign::Change()
     }
     catch(const char*mssg)
     {
-        cout << "Неверный ввод" << endl;
+        wcout << L"Неверный ввод" << endl;
     }
 
     if (choice == "1")
     {
         getline(cin, choice);
 
-        cout << "Фамилия Имя: ";
+        wcout << L"Фамилия Имя: ";
         getline(cin, this->LnameFname);
     }
     else if (choice == "2")
     {
         getline(cin, choice);
 
-        cout << "Знак зодиака: ";
+        wcout << L"Знак зодиака: ";
         getline(cin, this->sign);
     }
     else if (choice == "3")
     {
         getline(cin, choice);
 
-        cout << "День рождения: ";
+        wcout << L"День рождения: ";
         getline(cin, this->birthday);
 
         for (int i = 0; i < birthday.size(); i++)
         {
             if (birthday[i] >= 'A' && birthday[i] <= 'Z')
             {
-                cout << "Неверный ввод" << endl;
+                wcout << L"Неверный ввод" << endl;
                 exit(0);
             }
 
             if (birthday[i] == ',' || birthday[i] == '/' || birthday[i] == ':' || birthday[i] == ' ' || birthday[i] == ';')
             {
-                cout << "Неверный ввод" << endl;
+                wcout << L"Неверный ввод" << endl;
                 exit(0);
             }
         }
     }
     else
     {
-        cout << "Ошибка выбора" << endl;
+        wcout << L"Ошибка выбора" << endl;
         exit(0);
     }
 }
 
 ostream &operator<< (ostream &stream, Sign &s) // перегрузка оператора извлеченния
 {
-    stream << "\nВсе поля класса:" << endl;
+    stream << L"\nВсе поля класса:" << endl;
     stream << s.LnameFname << endl;
     stream << s.sign << endl;
     stream << s.birthday << endl;
@@ -192,18 +192,19 @@ ostream &operator<< (ostream &stream, Sign &s) // перегрузка опер�
 
 istream &operator>> (istream &stream, Sign &s) // перегрузка оператора вставки
 {
+    setlocale(LC_CTYPE, "Russian");
     string buf;
 
-    cout << "Вставка значений:" << endl;
-    cout << "Фамилия имя: ";
+    wcout << L"Вставка значений:" << endl;
+    wcout << L"Фамилия имя: ";
     getline(stream, buf);
     s.LnameFname = buf;
 
-    cout << "Знак зодиака: ";
+    wcout << L"Знак зодиака: ";
     getline(stream, buf);
     s.sign = buf;
 
-    cout << "День рождения: ";
+    wcout << L"День рождения: ";
     getline(stream, buf);
     s.birthday = buf;
 
@@ -211,13 +212,13 @@ istream &operator>> (istream &stream, Sign &s) // перегрузка опер�
         {
             if (buf[i] >= 'A' && buf[i] <= 'Z')
             {
-                cout << "Неверный ввод" << endl;
+                wcout << L"Неверный ввод" << endl;
                 exit(0);
             }
 
             if (buf[i] == ',' || buf[i] == '/' || buf[i] == ':' || buf[i] == ' ' || buf[i] == ';')
             {
-                cout << "Неверный ввод" << endl;
+                wcout << L"Неверный ввод" << endl;
                 exit(0);
             }
         }
